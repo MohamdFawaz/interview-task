@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\api;
 
+use App\Http\Requests\ActivateUserRequest;
 use App\Http\Requests\AuthUserRequest;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Resources\UserResource;
+use App\Http\Resources\UserStatusResource;
 use App\Models\User;
 use Hash;
 use Illuminate\Http\Request;
@@ -34,6 +36,17 @@ class UserController extends APIController
             }
         }else{
             return $this->respondWithError(['message' => __('validation.something_went_wrong')]);
+        }
+    }
+
+    public function activateUser(ActivateUserRequest $request){
+        $user = User::where('phone_number',$request->input('phone_number'))->where('auth_token',$request->input('auth-token'))->first();
+
+        if ($user){
+            $user->status()->create(['activated' => $request->input('status')]);
+            return $this->respondCreated(UserStatusResource::make($user));
+        }else{
+            return $this->respondWithError(['message' => __('auth.failed')]);
         }
     }
 }

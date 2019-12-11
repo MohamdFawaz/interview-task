@@ -20,4 +20,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::prefix('/user')->group(function (){
     Route::post('/store','api\UserController@store');
     Route::post('/auth','api\UserController@authenticateUser');
+    Route::post('/activate','api\UserController@activateUser');
 });
