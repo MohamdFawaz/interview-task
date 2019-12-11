@@ -117,6 +117,7 @@ return [
     'uploaded' => 'The :attribute failed to upload.',
     'url' => 'The :attribute format is invalid.',
     'uuid' => 'The :attribute must be a valid UUID.',
+    'phone' => 'The :attribute field contains an invalid number.',
 
     /*
     |--------------------------------------------------------------------------
@@ -134,6 +135,8 @@ return [
             'rule-name' => 'custom-message',
         ],
     ],
+
+    'something_went_wrong' => 'Sorry Something Went Wrong, Please Try Again Later',
 
     /*
     |--------------------------------------------------------------------------
