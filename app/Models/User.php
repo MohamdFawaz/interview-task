@@ -61,4 +61,9 @@ class User extends Authenticatable
     {
         return ucwords($name);
     }
+
+    public function status()
+    {
+        return $this->hasMany(UserStatus::class,'user_id');
+    }
 }
