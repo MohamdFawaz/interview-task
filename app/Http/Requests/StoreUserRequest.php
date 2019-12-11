@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Carbon\Carbon;
 use Dotenv\Exception\ValidationException;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Http\Requests\Request;
@@ -34,7 +35,7 @@ class StoreUserRequest extends Request
             'country_code' => 'required|string',
             'phone_number' => 'required|phone:EG',
             'gender' => 'required|string|in:male,female',
-            'birthdate' => 'required|string|date|date_format:Y-m-d',
+            'birthdate' => 'required|string|date|date_format:Y-m-d|before:'.Carbon::now()->format('Y-m-d'),
             'avatar' => 'required|file|mimes:jpeg,png,jpg|max:2048',
             'email' => 'required|string|email|unique:users,email',
         ];
