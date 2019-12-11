@@ -46,7 +46,7 @@ class APIController extends Controller
     /**
      * Respond.
      *
-     * @param string $data
+     * @param $data
      *
      * @return JsonResponse
      */
@@ -78,6 +78,19 @@ class APIController extends Controller
     public function respondWithError($message)
     {
         $this->setStatusCode(400);
+        return $this->respond($message);
+    }
+
+    /**
+     * respond with Unauthorized.
+     *
+     * @param $message
+     *
+     * @return JsonResponse
+     */
+    public function respondWithUnauthorized($message)
+    {
+        $this->setStatusCode(401);
         return $this->respond($message);
     }
 
